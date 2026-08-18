@@ -1,0 +1,28 @@
+<div class="contenedor">
+  <header>
+    <h1>{{ title }}</h1>
+    <p>Gestión de productos, carrito de compras y stock.</p>
+  </header>
+
+  <section class="acciones">
+    <input type="text" placeholder="Buscar producto..." [(ngModel)]="searchTerm" />
+    <button>Agregar producto</button>
+  </section>
+
+  <section class="productos">
+    <div *ngFor="let producto of productos" class="tarjeta">
+      <h2>{{ producto.nombre }}</h2>
+      <p><strong>Precio:</strong> {{ producto.precio | currency }}</p>
+      <p><strong>Stock:</strong> {{ producto.stock }}</p>
+      <p><strong>Estado:</strong> {{ producto.estado }}</p>
+      <button> Ver más </button>
+    </div>
+  </section>
+
+  <footer>
+    <p>Productos registrados: {{ productos.length }}</p>
+    <p>Eloy Francesco Matos Guando</p>
+  </footer>
+</div>
+
+<router-outlet />
