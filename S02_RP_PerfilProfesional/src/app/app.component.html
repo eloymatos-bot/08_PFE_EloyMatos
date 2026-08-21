@@ -1,0 +1,69 @@
+<nav class="navbar">
+	<h2>MI PERFIL PROFESIONAL</h2>
+	<div class="menu">
+		<a href="#inicio">Inicio</a>
+		<a href="#sobre-mi">Sobre mí</a>
+		<a href="#habilidades">Habilidades</a>
+		<a href="#proyectos">Proyectos</a>
+	</div>
+</nav>
+
+<!-- PRESENTACION -->
+<section id="inicio" class="inicio">
+	<div class="avatar">
+		👤
+  </div>
+	<h1>{{ nombre }}</h1>
+	<p>{{ profesion }}</p>
+	<p>{{ descripcion }}</p>
+	<div class="botones">
+		<a href="https://github.com/eloymatos-bot" target="_blank" rel="noopener noreferrer">
+			<button type="button">Github</button>
+		</a>
+		<button>Contactar</button>
+	</div>
+</section>
+
+<!-- SOBRE MI -->
+<section id="sobre-mi" class="seccion">
+	<h2>Sobre mí</h2>
+	<p>{{ descripcion }}</p>
+</section>
+
+<!-- HABILIDADES -->
+<section id="habilidades" class="seccion">
+	<h2>Habilidades</h2>
+	<div class="habilidades">
+		@for (habilidad of habilidades; track habilidad) {
+			<span>{{ habilidad }}</span>
+		}
+	</div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="seccion">
+	<h2>Mis proyectos</h2>
+	<div class="proyectos">
+		@for (proyecto of proyectos; track proyecto.nombre) {
+			<article class="proyecto">
+				<h3>{{ proyecto.nombre }}</h3>
+				<p>{{ proyecto.descripcion }}</p>
+				<button>Ver proyecto</button>
+			</article>
+		}
+	</div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contacto">
+	<h2>Contacto</h2>
+	<p>{{ correo }}</p>
+	<p>{{ ubicacion }}</p>
+	<h3>Redes Profesionales</h3>
+	<a href="https://github.com/eloymatos-bot" target="_blank" rel="noopener noreferrer">GitHub</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+	<p>2026 {{ nombre }} Mi perfil profesional</p>
+</footer>
