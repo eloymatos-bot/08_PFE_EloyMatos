@@ -1,0 +1,39 @@
+.producto-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 24px 0;
+}
+
+.lista-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lista-header h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.8rem;
+}
+
+.lista-header span {
+  color: #64748b;
+  font-weight: 600;
+}
+
+.lista-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.vacio {
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  color: #475569;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+}

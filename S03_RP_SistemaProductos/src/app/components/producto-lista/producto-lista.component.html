@@ -1,0 +1,21 @@
+<section class="producto-lista">
+  <div class="lista-header">
+    <h2>Productos</h2>
+    <span>{{ productos.length }} registros</span>
+  </div>
+
+  <div class="lista-grid" *ngIf="productos.length; else vacio">
+    <app-producto-card
+      *ngFor="let producto of productos"
+      [producto]="producto"
+      (editar)="onEditar($event)"
+      (eliminar)="onEliminar($event)">
+    </app-producto-card>
+  </div>
+
+  <ng-template #vacio>
+    <div class="vacio">
+      No hay productos registrados aún.
+    </div>
+  </ng-template>
+</section>

@@ -57,7 +57,7 @@ html {
 	display: grid;
 	justify-items: center;
 	padding: 92px 20px 100px;
-	background: #1261a0;
+	background: linear-gradient(135deg, #082b4c 0%, #1261a0 52%, #2085c7 100%);
 	color: #eaf5ff;
 	text-align: center;
 	overflow: hidden;
@@ -72,6 +72,41 @@ html {
 	border: 28px solid rgba(255, 255, 255, 0.1);
 	border-radius: 50%;
 	content: '';
+	animation: girar-fondo 16s linear infinite;
+}
+
+.inicio::after {
+	position: absolute;
+	width: 180px;
+	height: 180px;
+	bottom: -90px;
+	left: 9%;
+	border: 18px solid rgba(155, 210, 255, 0.2);
+	border-radius: 34% 66% 52% 48%;
+	content: '';
+	animation: flotar-fondo 7s ease-in-out infinite;
+}
+
+.inicio > * {
+	position: relative;
+	z-index: 1;
+}
+
+@keyframes girar-fondo {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes flotar-fondo {
+	0%,
+	100% {
+		transform: translate(0, 0) rotate(0deg);
+	}
+
+	50% {
+		transform: translate(28px, -16px) rotate(12deg);
+	}
 }
 
 .avatar {
@@ -84,6 +119,18 @@ html {
 	background: #082b4c;
 	box-shadow: 0 16px 30px rgba(8, 43, 76, 0.3);
 	font-size: 68px;
+	animation: flotar 3.5s ease-in-out infinite;
+}
+
+@keyframes flotar {
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-10px);
+	}
 }
 
 .inicio h1 {
@@ -123,12 +170,13 @@ button {
 	font: inherit;
 	font-weight: bold;
 	cursor: pointer;
-	transition: background 180ms ease, transform 180ms ease;
+	transition: background 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 button:hover {
 	background: #ffffff;
-	transform: translateY(-2px);
+	transform: translateY(-4px);
+	box-shadow: 0 8px 16px rgba(8, 43, 76, 0.24);
 }
 
 /* SECCIONES */
@@ -185,6 +233,12 @@ button:hover {
 	border-left: 5px solid #4aa3df;
 	background: #ffffff;
 	box-shadow: 0 12px 28px rgba(18, 97, 160, 0.12);
+	transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.proyecto:hover {
+	transform: translateY(-8px);
+	box-shadow: 0 18px 34px rgba(18, 97, 160, 0.22);
 }
 
 .proyecto h3 {
@@ -257,5 +311,14 @@ footer p {
 
 	.proyectos {
 		grid-template-columns: 1fr;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	* {
+		scroll-behavior: auto;
+		animation-duration: 0.01ms;
+		animation-iteration-count: 1;
+		transition-duration: 0.01ms;
 	}
 }

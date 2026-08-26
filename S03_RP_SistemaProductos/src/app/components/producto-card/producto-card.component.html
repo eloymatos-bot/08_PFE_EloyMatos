@@ -1,0 +1,21 @@
+<article class="producto-card" *ngIf="producto">
+  <div class="card-header">
+    <span class="categoria">{{ producto.categoria }}</span>
+    <span class="stock">Stock: {{ producto.stock }}</span>
+  </div>
+
+  <h3>{{ producto.nombre }}</h3>
+
+  <p class="descripcion">
+    {{ producto.descripcion || 'Sin descripción disponible.' }}
+  </p>
+
+  <div class="card-footer">
+    <span class="precio">S/ {{ producto.precio.toFixed(2) }}</span>
+
+    <div class="acciones">
+      <button type="button" class="btn btn-editar" (click)="onEditar()">Editar</button>
+      <button type="button" class="btn btn-eliminar" (click)="onEliminar()">Eliminar</button>
+    </div>
+  </div>
+</article>

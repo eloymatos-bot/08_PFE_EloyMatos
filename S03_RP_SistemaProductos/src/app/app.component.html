@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+
+<main class="container">
+  <div class="main-layout">
+    <app-producto-formulario
+      [productoAEditar]="productoSeleccionado"
+      (guardar)="onGuardar($event)"
+      (cancelar)="onCancelarForm()">
+    </app-producto-formulario>
+
+    <app-producto-lista
+      [productos]="productos"
+      (editar)="onEditar($event)"
+      (eliminar)="onEliminar($event)">
+    </app-producto-lista>
+  </div>
+</main>
