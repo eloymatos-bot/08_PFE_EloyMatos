@@ -1,0 +1,28 @@
+<!-- Elemento 1: Título de App -->
+<app-navbar></app-navbar>
+
+<main class="app-main">
+  <!-- Elementos 2 y 3: Formulario y Botón Agregar -->
+  <app-gestor-formulario (gastoAgregado)="agregarGasto($event)"></app-gestor-formulario>
+
+  <!-- Elemento 4: Lista de Elementos con @for -->
+  <section class="lista-gastos">
+    <h2 class="lista-titulo">📋 Mis Gastos Registrados</h2>
+
+    @if (gastos.length === 0) {
+      <div class="lista-vacia">
+        <p>🎉 No tienes gastos registrados aún. ¡Empieza agregando uno!</p>
+      </div>
+    }
+
+    <div class="gastos-grid">
+      <!-- Elementos 5 y 6: Tarjetas con Mensaje Dinámico -->
+      @for (gasto of gastos; track gasto.id) {
+        <app-gestor-card
+          [gasto]="gasto"
+          (gastoEliminado)="eliminarGasto($event)"
+        ></app-gestor-card>
+      }
+    </div>
+  </section>
+</main>

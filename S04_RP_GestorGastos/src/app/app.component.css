@@ -1,0 +1,59 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: hsl(220, 15%, 95%);
+  font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: hsl(220, 30%, 25%);
+}
+
+.app-main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.lista-gastos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.lista-titulo {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: hsl(220, 40%, 25%);
+}
+
+.lista-vacia {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  background: hsl(220, 20%, 98%);
+  border-radius: 14px;
+  border: 2px dashed hsl(220, 20%, 85%);
+}
+
+.lista-vacia p {
+  margin: 0;
+  font-size: 1rem;
+  color: hsl(220, 15%, 55%);
+}
+
+.gastos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .app-main {
+    padding: 1rem;
+  }
+
+  .gastos-grid {
+    grid-template-columns: 1fr;
+  }
+}

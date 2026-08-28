@@ -1,0 +1,114 @@
+.card {
+  border-radius: 14px;
+  padding: 1.25rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px hsla(220, 40%, 20%, 0.12);
+}
+
+/* Clase dinámica: Gasto controlado (monto <= 100) */
+.card.gasto-controlado {
+  background: hsl(145, 30%, 96%);
+  border-color: hsl(145, 40%, 78%);
+}
+
+/* Clase dinámica: Gasto elevado (monto > 100) */
+.card.gasto-elevado {
+  background: hsl(0, 40%, 97%);
+  border-color: hsl(0, 55%, 72%);
+  box-shadow: 0 2px 12px hsla(0, 50%, 50%, 0.1);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.card-categoria {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: hsl(250, 50%, 45%);
+  background: hsl(250, 40%, 93%);
+  padding: 0.25rem 0.7rem;
+  border-radius: 20px;
+}
+
+.card-fecha {
+  font-size: 0.8rem;
+  color: hsl(220, 15%, 55%);
+}
+
+.card-body {
+  margin-bottom: 0.75rem;
+}
+
+.card-descripcion {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: hsl(220, 40%, 20%);
+}
+
+.card-monto {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: hsl(220, 50%, 30%);
+}
+
+.card.gasto-elevado .card-monto {
+  color: hsl(0, 60%, 45%);
+}
+
+.card.gasto-controlado .card-monto {
+  color: hsl(145, 50%, 35%);
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 0.75rem;
+  border-top: 1px solid hsla(220, 20%, 50%, 0.15);
+}
+
+.badge {
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+}
+
+.badge-elevado {
+  background: hsl(0, 50%, 92%);
+  color: hsl(0, 60%, 42%);
+}
+
+.badge-controlado {
+  background: hsl(145, 40%, 90%);
+  color: hsl(145, 55%, 32%);
+}
+
+.btn-eliminar {
+  background: none;
+  border: 2px solid hsl(0, 40%, 80%);
+  border-radius: 10px;
+  padding: 0.4rem 0.7rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-eliminar:hover {
+  background: hsl(0, 50%, 93%);
+  border-color: hsl(0, 55%, 60%);
+  transform: scale(1.1);
+}

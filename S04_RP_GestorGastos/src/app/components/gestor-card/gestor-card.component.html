@@ -1,0 +1,27 @@
+<!-- Tarjeta con clase dinámica [class] -->
+<div
+  class="card"
+  [class.gasto-elevado]="esGastoElevado"
+  [class.gasto-controlado]="!esGastoElevado"
+>
+  <div class="card-header">
+    <span class="card-categoria">{{ gasto.categoria }}</span>
+    <span class="card-fecha">{{ gasto.fecha }}</span>
+  </div>
+
+  <div class="card-body">
+    <h3 class="card-descripcion">{{ gasto.descripcion }}</h3>
+    <p class="card-monto">S/ {{ gasto.monto.toFixed(2) }}</p>
+  </div>
+
+  <div class="card-footer">
+    <!-- Mensaje Dinámico con @if -->
+    @if (esGastoElevado) {
+      <span class="badge badge-elevado">⚠️ Gasto elevado</span>
+    } @else {
+      <span class="badge badge-controlado">✔️ Gasto controlado</span>
+    }
+
+    <button class="btn-eliminar" (click)="onEliminar()">🗑️</button>
+  </div>
+</div>
