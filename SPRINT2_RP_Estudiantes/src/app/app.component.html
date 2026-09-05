@@ -1,0 +1,48 @@
+﻿<div class="app-shell">
+  <main class="container">
+    <header class="page-header">
+      <div>
+        <p class="eyebrow">Panel escolar</p>
+        <h1>Estudiantes</h1>
+        <p class="page-description">Gestiona y consulta la información escolar de tus estudiantes.</p>
+      </div>
+    </header>
+
+    <section class="stats-grid" aria-label="Resumen académico">
+      <article class="stat-card">
+        <span class="stat-icon stat-icon-indigo">01</span>
+        <div><p>Total de estudiantes</p><strong>{{ estudiantes.length }}</strong></div>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon stat-icon-green">/20</span>
+        <div><p>Promedio general</p><strong>{{ promedioGeneral }}<small>/20</small></strong></div>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon stat-icon-amber">02</span>
+        <div><p>Grados registrados</p><strong>{{ gradosRegistrados }}</strong></div>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon stat-icon-purple">★</span>
+        <div><p>Estudiantes destacados</p><strong>{{ estudiantesDestacados }}</strong></div>
+      </article>
+    </section>
+
+    <app-estudiante-lista
+      [estudiantes]="estudiantes"
+      (editar)="onEditar($event)"
+      (eliminar)="onEliminar($event)"
+      (nuevo)="abrirFormulario()">
+    </app-estudiante-lista>
+  </main>
+</div>
+
+<div class="modal-backdrop" *ngIf="formularioAbierto" (click)="onCancelarFormulario()">
+  <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="form-title" (click)="$event.stopPropagation()">
+    <button type="button" class="modal-close" aria-label="Cerrar formulario" (click)="onCancelarFormulario()">&times;</button>
+    <app-estudiante-formulario
+      [estudianteAEditar]="estudianteSeleccionado"
+      (guardar)="onGuardar($event)"
+      (cancelar)="onCancelarFormulario()">
+    </app-estudiante-formulario>
+  </div>
+</div>

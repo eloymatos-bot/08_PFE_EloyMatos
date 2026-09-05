@@ -1,0 +1,27 @@
+<article class="student-card" *ngIf="estudiante">
+  <div class="card-top">
+    <div class="student-heading">
+      <span class="avatar">{{ iniciales }}</span>
+      <div>
+        <h3>{{ estudiante.nombre }}</h3>
+        <p>{{ estudiante.grado }}</p>
+      </div>
+    </div>
+    <span class="status-badge" [class.status-warning]="estadoAcademico === 'Regular'" [class.status-danger]="estadoAcademico === 'En riesgo'">
+      {{ estadoAcademico }}
+    </span>
+  </div>
+
+  <div class="student-info">
+    <p><span>Edad</span><strong>{{ estudiante.edad }} años</strong></p>
+    <p><span>Email</span><strong>{{ estudiante.email }}</strong></p>
+  </div>
+
+  <div class="card-footer">
+    <div><span>Promedio</span><strong>{{ estudiante.promedio }}<small>/20</small></strong></div>
+    <div class="actions">
+      <button type="button" class="btn btn-edit" (click)="onEditar()">Editar</button>
+      <button type="button" class="btn btn-delete" (click)="onEliminar()">Eliminar</button>
+    </div>
+  </div>
+</article>

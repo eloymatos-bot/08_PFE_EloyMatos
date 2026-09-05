@@ -1,0 +1,51 @@
+<section class="form-card">
+  <p class="form-kicker">{{ estudianteAEditar ? 'Actualizar registro' : 'Nuevo registro' }}</p>
+  <h2 id="form-title">{{ estudianteAEditar ? 'Editar estudiante' : 'Registrar estudiante' }}</h2>
+  <p class="form-description">Completa los datos académicos para mantener el directorio actualizado.</p>
+
+  <form #studentForm="ngForm" (ngSubmit)="studentForm.form.valid && onSubmit()" novalidate>
+    <div class="form-grid">
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" placeholder="Ej. Ana García" [(ngModel)]="model.nombre" required #nombre="ngModel" />
+        <small class="field-error" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">Ingresa el nombre completo.</small>
+      </div>
+
+      <div class="field">
+        <label for="grado">Grado</label>
+        <select id="grado" name="grado" [(ngModel)]="model.grado" required #grado="ngModel">
+          <option value="" disabled selected>Seleccione el grado</option>
+          <option *ngFor="let grado of grados" [value]="grado">{{ grado }}</option>
+        </select>
+        <small class="field-error" *ngIf="grado.invalid && (grado.dirty || grado.touched)">Selecciona un grado.</small>
+      </div>
+
+      <div class="field">
+        <label for="edad">Edad</label>
+        <input id="edad" name="edad" type="number" min="6" max="18" placeholder="Ej. 16" [(ngModel)]="model.edad" required #edad="ngModel" />
+        <small class="field-error" *ngIf="edad.invalid && (edad.dirty || edad.touched)">Ingresa una edad válida.</small>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="correo@colegio.edu" [(ngModel)]="model.email" required email #email="ngModel" />
+        <small class="field-error" *ngIf="email.invalid && (email.dirty || email.touched)">Ingresa un correo válido.</small>
+      </div>
+
+      <div class="field">
+        <label for="promedio">Promedio</label>
+        <input id="promedio" name="promedio" type="number" min="1" max="20" placeholder="Ej. 18" [(ngModel)]="model.promedio" required #promedio="ngModel" />
+        <small class="field-error" *ngIf="promedio.invalid && (promedio.dirty || promedio.touched)">Usa un valor entre 1 y 20.</small>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">
+        {{ estudianteAEditar ? 'Actualizar estudiante' : 'Guardar estudiante' }}
+      </button>
+      <button *ngIf="estudianteAEditar" type="button" class="btn btn-secondary" (click)="onCancelar()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</section>
