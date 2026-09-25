@@ -1,0 +1,49 @@
+<div class="app-layout">
+  <!-- Encabezado Principal de la Aplicación -->
+  <header class="app-header">
+    <div class="container header-content">
+      <div class="brand">
+        <span class="logo-icon">📖</span>
+        <div>
+          <h1>Sistema de Gestión de Libros</h1>
+          <p class="author-info">Estudiante: <strong>Eloy Francesco Matos Guando</strong> | Control Individual S08 (EE2)</p>
+        </div>
+      </div>
+      <button class="btn-refresh" (click)="cargarLibros()" [disabled]="cargando" title="Recargar lista desde la API">
+        🔄 Recargar Lista
+      </button>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="container main-content">
+    
+    <!-- Componente 1: Formulario (Creación / Edición) -->
+    <section class="section-form">
+      <app-libro-form 
+        [libroSeleccionado]="libroSeleccionado"
+        (guardarLibro)="onGuardarLibro($event)"
+        (cancelarEdicion)="onCancelarEdicion()"
+      ></app-libro-form>
+    </section>
+
+    <!-- Componente 2: Listado (Tabla + Acciones) -->
+    <section class="section-lista">
+      <app-libro-lista
+        [libros]="libros"
+        [cargando]="cargando"
+        [errorMensaje]="errorMensaje"
+        (seleccionarParaEditar)="onSeleccionarParaEditar($event)"
+        (solicitarEliminar)="onSolicitarEliminar($event)"
+      ></app-libro-lista>
+    </section>
+
+  </main>
+
+  <!-- Pie de Página -->
+  <footer class="app-footer">
+    <div class="container">
+      <p>© 2026 - Control Individual EE2 | Desarrollo Frontend Angular Standalone | API REST MockAPI.io</p>
+    </div>
+  </footer>
+</div>

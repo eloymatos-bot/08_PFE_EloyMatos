@@ -1,0 +1,112 @@
+<div class="lista-container">
+  <div class="lista-header">
+    <h2>📚 Catálogo de Libros</h2>
+    <span class="badge-total">Total: {{ libros.length }} libros</span>
+  </div>
+
+  <!-- Estado 1: Mensaje de Error de Conexión -->
+  @if (errorMensaje) {
+    <div class="alert alert-error">
+      ⚠️ <strong>Error:</strong> {{ errorMensaje }}
+    </div>
+  }
+
+  <!-- Estado 2: Cargando Datos -->
+  @if (cargando) {
+    <div class="loading-spinner">
+      <div class="spinner"></div>
+      <p>Cargando catálogo desde la API REST...</p>
+    </div>
+  } @else {
+    <!-- Estado 3: Lista Vacía -->
+    @if (libros.length === 0 && !errorMensaje) {
+      <div class="empty-state">
+        <p>📖 No hay libros registrados en la base de datos.</p>
+        <small>Utiliza el formulario superior para registrar el primer libro.</small>
+      </div>
+    }
+
+    <!-- Estado 4: Tabla de Libros -->
+    @if (libros.length > 0) {
+      <div class="table-responsive">
+        <table class="tabla-libros">
+          <thead>
+            <tr>
+              <th>Portada</th>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Año</th>
+              <th>Género</th>
+              <th>Precio</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (libro of libros; track (libro.id || libro._id)) {
+              <tr>
+                <td class="col-portada">
+                  @if (libro.portadaUrl) {
+                    <img [src]="libro.portadaUrl" [alt]="libro.titulo" class="img-portada" />
+                  } @else {
+                    <div class="no-img">Sin Foto</div>
+                  }
+                </td>
+                <td class="col-titulo">
+                  <strong>{{ libro.titulo }}</strong>
+                </td>
+                <td>{{ libro.autor }}</td>
+                <td>{{ libro.anioPublicacion }}</td>
+                <td>
+                  <span class="tag-genero">{{ libro.genero }}</span>
+                </td>
+                <td class="col-precio">
+                  {{ libro.precio | currency:'PEN':'S/ ' }}
+                </td>
+                <td class="col-acciones">
+                  <button 
+                    type="button" 
+                    class="btn btn-edit" 
+                    (click)="onEditar(libro)"
+                    title="Editar libro"
+                  >
+                    ✏️ Editar
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-delete" 
+                    (click)="abrirModalEliminar(libro)"
+                    title="Eliminar libro"
+                  >
+                    🗑️ Eliminar
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  }
+
+  <!-- MODAL VISUAL DE CONFIRMACIÓN DE ELIMINACIÓN -->
+  @if (libroEnConfirmacion) {
+    <div class="modal-overlay">
+      <div class="modal-box">
+        <div class="modal-icon">⚠️</div>
+        <h3>Confirmar Eliminación</h3>
+        <p>
+          ¿Estás seguro de que deseas eliminar el libro 
+          <strong>"{{ libroEnConfirmacion.titulo }}"</strong> de la API REST?
+        </p>
+        <div class="modal-actions">
+          <button type="button" class="btn btn-cancel-modal" (click)="cancelarEliminar()">
+            Cancelar
+          </button>
+          <button type="button" class="btn btn-confirm-delete" (click)="confirmarEliminar()">
+            🗑️ Sí, Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  }
+</div>

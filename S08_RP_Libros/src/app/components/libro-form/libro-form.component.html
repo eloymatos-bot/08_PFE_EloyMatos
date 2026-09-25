@@ -1,0 +1,135 @@
+<div class="form-card">
+  <div class="form-header">
+    @if (modoEdicion) {
+      <h2>✏️ Editar Libro</h2>
+    } @else {
+      <h2>➕ Registrar Nuevo Libro</h2>
+    }
+    <p class="subtitle">
+      @if (modoEdicion) {
+        Modifica los campos necesarios y guarda los cambios en la API REST.
+      } @else {
+        Completa el formulario para agregar un libro a la base de datos.
+      }
+    </p>
+  </div>
+
+  <form (ngSubmit)="onSubmit()" #f="ngForm" class="libro-formulario">
+    <div class="form-grid">
+
+      <!-- Campo: Título -->
+      <div class="form-group">
+        <label for="titulo">Título del Libro <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="titulo" 
+          name="titulo" 
+          [(ngModel)]="libroForm.titulo" 
+          required 
+          placeholder="Ej. Cien Años de Soledad" 
+          class="form-input"
+        />
+      </div>
+
+      <!-- Campo: Autor -->
+      <div class="form-group">
+        <label for="autor">Autor <span class="required">*</span></label>
+        <input 
+          type="text" 
+          id="autor" 
+          name="autor" 
+          [(ngModel)]="libroForm.autor" 
+          required 
+          placeholder="Ej. Gabriel García Márquez" 
+          class="form-input"
+        />
+      </div>
+
+      <!-- Campo: Año de Publicación -->
+      <div class="form-group">
+        <label for="anioPublicacion">Año de Publicación <span class="required">*</span></label>
+        <input 
+          type="number" 
+          id="anioPublicacion" 
+          name="anioPublicacion" 
+          [(ngModel)]="libroForm.anioPublicacion" 
+          required 
+          min="1000" 
+          max="2099" 
+          class="form-input"
+        />
+      </div>
+
+      <!-- Campo: Género (Selector) -->
+      <div class="form-group">
+        <label for="genero">Género Literario <span class="required">*</span></label>
+        <select 
+          id="genero" 
+          name="genero" 
+          [(ngModel)]="libroForm.genero" 
+          required 
+          class="form-select"
+        >
+          @for (g of generosDisponibles; track g) {
+            <option [value]="g">{{ g }}</option>
+          }
+        </select>
+      </div>
+
+      <!-- Campo: Precio -->
+      <div class="form-group">
+        <label for="precio">Precio (S/) <span class="required">*</span></label>
+        <input 
+          type="number" 
+          id="precio" 
+          name="precio" 
+          [(ngModel)]="libroForm.precio" 
+          required 
+          step="0.50" 
+          min="0" 
+          placeholder="0.00" 
+          class="form-input"
+        />
+      </div>
+
+      <!-- Campo: URL de Portada -->
+      <div class="form-group full-width">
+        <label for="portadaUrl">URL de la Imagen de Portada</label>
+        <input 
+          type="url" 
+          id="portadaUrl" 
+          name="portadaUrl" 
+          [(ngModel)]="libroForm.portadaUrl" 
+          placeholder="https://ejemplo.com/imagen.jpg (opcional)" 
+          class="form-input"
+        />
+      </div>
+
+    </div>
+
+    <!-- Botones de Acción -->
+    <div class="form-actions">
+      <button 
+        type="submit" 
+        class="btn-submit" 
+        [disabled]="!f.valid"
+      >
+        @if (modoEdicion) {
+          💾 Actualizar Libro (PUT)
+        } @else {
+          ➕ Guardar Libro (POST)
+        }
+      </button>
+
+      @if (modoEdicion) {
+        <button 
+          type="button" 
+          class="btn-cancel" 
+          (click)="onCancelar()"
+        >
+          ❌ Cancelar
+        </button>
+      }
+    </div>
+  </form>
+</div>
